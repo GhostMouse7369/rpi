@@ -1,0 +1,6 @@
+headers = hello.h hello2.h
+#headerFilter = *
+package = lib.hello
+compilerOpts = -Isrc/nativeInterop/c/include
+#linkerOpts.mingw  = -LC:/Developer/Libs -lhello
+#linkerOpts.linux_x64  = -L/home/laoshuzi/Env/Libs/hello/linux_x64 -lhello

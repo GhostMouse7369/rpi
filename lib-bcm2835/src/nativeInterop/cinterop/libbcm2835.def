@@ -1,0 +1,4 @@
+headers = bcm2835.h
+#headerFilter = *
+package = lib.bcm2835
+compilerOpts = -Isrc/nativeInterop/c/include
