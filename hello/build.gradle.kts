@@ -80,32 +80,44 @@ kotlin {
     }
 
     // Linux
-//    linuxArm32Hfp {
-//        binaries.executable {
-//            entryPoint = "top.laoshuzi.rpi.hello.main"
-//        }
-//        compilations["main"].defaultSourceSet {
-//            dependencies {
-//                implementation(Deps.KotlinStdlib.base)
-//                implementation(Deps.KotlinxCoroutines.native)
-//                implementation(Deps.KotlinxSerializationRuntime.native)
-//            }
-//        }
-//    }
+    linuxArm32Hfp {
+        binaries.executable {
+            entryPoint = "top.laoshuzi.rpi.hello.main"
+            linkerOpts = mutableListOf( "-Lsrc/nativeInterop/c/libs/linux_arm32", "-lhello")
+        }
+        compilations["main"].apply {
+            cinterops {
+                create("libhello")
+            }
+            defaultSourceSet {
+                dependencies {
+                    implementation(Deps.KotlinStdlib.base)
+                    implementation(Deps.KotlinxCoroutines.native)
+                    implementation(Deps.KotlinxSerializationRuntime.native)
+                }
+            }
+        }
+    }
 //    linuxMips32 { }
 //    linuxMipsel32 { }
-//    linuxX64 {
-//        binaries.executable {
-//            entryPoint = "top.laoshuzi.rpi.hello.main"
-//        }
-//        compilations["main"].defaultSourceSet {
-//            dependencies {
-//                implementation(Deps.KotlinStdlib.base)
-//                implementation(Deps.KotlinxCoroutines.native)
-//                implementation(Deps.KotlinxSerializationRuntime.native)
-//            }
-//        }
-//    }
+    linuxX64 {
+        binaries.executable {
+            entryPoint = "top.laoshuzi.rpi.hello.main"
+            linkerOpts = mutableListOf( "-Lsrc/nativeInterop/c/libs/linux_x64", "-lhello")
+        }
+        compilations["main"].apply {
+            cinterops {
+                create("libhello")
+            }
+            defaultSourceSet {
+                dependencies {
+                    implementation(Deps.KotlinStdlib.base)
+                    implementation(Deps.KotlinxCoroutines.native)
+                    implementation(Deps.KotlinxSerializationRuntime.native)
+                }
+            }
+        }
+    }
 
     // WebAssembly
 //    wasm32 { }
