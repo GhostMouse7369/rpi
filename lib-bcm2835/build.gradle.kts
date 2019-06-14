@@ -11,6 +11,10 @@ repositories {
 
 kotlin {
     linuxArm32Hfp {
+        binaries.sharedLib {
+            baseName = "bcm2835"
+            linkerOpts = mutableListOf("-Lsrc/nativeInterop/c/libs/linux_arm32", "-lbcm2835")
+        }
         compilations["main"].apply {
             cinterops {
                 create("libbcm2835")
