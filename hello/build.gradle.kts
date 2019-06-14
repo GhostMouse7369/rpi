@@ -92,8 +92,8 @@ kotlin {
             defaultSourceSet {
                 dependencies {
                     implementation(Deps.KotlinStdlib.base)
-                    implementation(Deps.KotlinxCoroutines.native)
-                    implementation(Deps.KotlinxSerializationRuntime.native)
+//                    implementation(Deps.KotlinxCoroutines.native)
+//                    implementation(Deps.KotlinxSerializationRuntime.native)
                 }
             }
         }

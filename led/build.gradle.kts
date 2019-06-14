@@ -22,12 +22,17 @@ kotlin {
         }
     }
     linuxArm32Hfp {
+        binaries.executable {
+            baseName = "led"
+            entryPoint("top.laoshuzi.rpi.led.main")
+            linkerOpts = mutableListOf("-Llibs/linux_arm32", "-lbcm2835")
+        }
         compilations["main"].apply {
             defaultSourceSet {
                 dependencies {
                     implementation(Deps.KotlinStdlib.base)
-                    implementation(Deps.KotlinxCoroutines.native)
-                    implementation(Deps.KotlinxSerializationRuntime.native)
+//                    implementation(Deps.KotlinxCoroutines.native)
+//                    implementation(Deps.KotlinxSerializationRuntime.native)
 
                     implementation(project(":lib-bcm2835"))
                 }
