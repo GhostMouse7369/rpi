@@ -10,15 +10,14 @@ version = "1.0-SNAPSHOT"
 repositories {
     jcenter()
     mavenCentral()
-    maven("https://kotlin.bintray.com/kotlinx")
 }
 
 kotlin {
     sourceSets.commonMain {
         dependencies {
-            api(Deps.KotlinStdlib.common)
-            api(Deps.KotlinxCoroutines.common)
-            api(Deps.KotlinxSerializationRuntime.common)
+            api(Deps.kotlin.stdlib.common)
+            api(Deps.kotlinx.coroutines.common)
+            api(Deps.kotlinx.serialization_runtime.common)
         }
     }
     linuxArm32Hfp {
@@ -30,9 +29,7 @@ kotlin {
         compilations["main"].apply {
             defaultSourceSet {
                 dependencies {
-                    implementation(Deps.KotlinStdlib.base)
-//                    implementation(Deps.KotlinxCoroutines.native)
-//                    implementation(Deps.KotlinxSerializationRuntime.native)
+                    implementation(Deps.kotlin.stdlib.it)
 
                     implementation(project(":lib-bcm2835"))
                 }

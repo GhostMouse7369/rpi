@@ -17,10 +17,10 @@ kotlin {
 
     sourceSets.commonMain {
         dependencies {
-            implementation(Deps.KotlinStdlib.common)
-            implementation(Deps.KotlinxCoroutines.common)
-            implementation(Deps.KotlinxSerializationRuntime.common)
-//            implementation(Deps.Ktor.common)
+            implementation(Deps.kotlin.stdlib.common)
+            implementation(Deps.kotlinx.coroutines.common)
+            implementation(Deps.kotlinx.serialization_runtime.common)
+            implementation(Deps.ktor.it)
         }
     }
 
@@ -71,9 +71,9 @@ kotlin {
 //            }
             defaultSourceSet {
                 dependencies {
-                    implementation(Deps.KotlinStdlib.base)
-                    implementation(Deps.KotlinxCoroutines.native)
-                    implementation(Deps.KotlinxSerializationRuntime.native)
+                    implementation(Deps.kotlin.stdlib.it)
+                    implementation(Deps.kotlinx.coroutines.native)
+                    implementation(Deps.kotlinx.serialization_runtime.native)
                 }
             }
         }
@@ -83,7 +83,7 @@ kotlin {
     linuxArm32Hfp {
         binaries.executable {
             entryPoint = "top.laoshuzi.rpi.hello.main"
-            linkerOpts = mutableListOf( "-Lsrc/nativeInterop/c/libs/linux_arm32", "-lhello")
+            linkerOpts = mutableListOf("-Lsrc/nativeInterop/c/libs/linux_arm32", "-lhello")
         }
         compilations["main"].apply {
             cinterops {
@@ -91,9 +91,9 @@ kotlin {
             }
             defaultSourceSet {
                 dependencies {
-                    implementation(Deps.KotlinStdlib.base)
-//                    implementation(Deps.KotlinxCoroutines.native)
-//                    implementation(Deps.KotlinxSerializationRuntime.native)
+                    implementation(Deps.kotlin.stdlib.it)
+//                    implementation(Deps.kotlinx.coroutines.native)
+//                    implementation(Deps.kotlinx.serialization_runtime.native)
                 }
             }
         }
@@ -103,7 +103,7 @@ kotlin {
     linuxX64 {
         binaries.executable {
             entryPoint = "top.laoshuzi.rpi.hello.main"
-            linkerOpts = mutableListOf( "-Lsrc/nativeInterop/c/libs/linux_x64", "-lhello")
+            linkerOpts = mutableListOf("-Lsrc/nativeInterop/c/libs/linux_x64", "-lhello")
         }
         compilations["main"].apply {
             cinterops {
@@ -111,9 +111,9 @@ kotlin {
             }
             defaultSourceSet {
                 dependencies {
-                    implementation(Deps.KotlinStdlib.base)
-                    implementation(Deps.KotlinxCoroutines.native)
-                    implementation(Deps.KotlinxSerializationRuntime.native)
+                    implementation(Deps.kotlin.stdlib.it)
+                    implementation(Deps.kotlinx.coroutines.native)
+                    implementation(Deps.kotlinx.serialization_runtime.native)
                 }
             }
         }
