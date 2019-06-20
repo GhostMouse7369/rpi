@@ -12,16 +12,24 @@ fun main(args: Array<String>) {
     println("led blink")
     val bcm2835 = Bcm2835.INSTANCE
 
-    val ledService: LedService = Bcm2835LedService()
+    val ledService: PwmLedService = PiPwmLedService()
 
+    ledService.openLed()
     for (i in 1..count) {
         println("blink[$i]")
-        ledService.closeLed()
-        bcm2835.delay(200)
-        ledService.openLed()
-        bcm2835.delay(1000)
+        ledService.setLedLight(i.toFloat() % 100)
+        bcm2835.delay(100)
     }
+    ledService.closeLed()
+//    for (i in 1..count) {
+//        println("blink[$i]")
+//        ledService.closeLed()
+//        bcm2835.delay(200)
+//        ledService.openLed()
+//        bcm2835.delay(1000)
+//    }
 
     println("end")
     bcm2835.close()
 }
+

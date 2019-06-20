@@ -5,7 +5,7 @@ import lib.bcm2835.*
 /**
  * Created by mouse on 2019/6/13.
  */
-class Bcm2835LedService : LedService {
+open class PiLedService : LedService {
 
     private val pin = RPI_GPIO_P1_11.toUByte()
 

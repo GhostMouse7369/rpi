@@ -9,12 +9,12 @@ import top.laoshuzi.rpi.bcm2835.exception.IOException
 interface Pwm {
 
     @Throws(IOException::class)
-    fun setPwmDutyCycle(var1: Double)
+    fun setEnabled(enable: Boolean)
 
     @Throws(IOException::class)
-    fun setPwmFrequencyHz(var1: Double)
+    fun setPwmFrequencyHz(freq: Float)
 
     @Throws(IOException::class)
-    fun setEnabled(var1: Boolean)
+    fun setPwmDutyCycle(dc: Float)
 
 }

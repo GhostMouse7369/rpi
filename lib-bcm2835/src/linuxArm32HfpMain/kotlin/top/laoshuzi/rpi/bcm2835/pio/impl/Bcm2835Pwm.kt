@@ -1,21 +1,15 @@
 package top.laoshuzi.rpi.bcm2835.pio.impl
 
 import lib.bcm2835.*
-import top.laoshuzi.rpi.bcm2835.Bcm2835
+import top.laoshuzi.rpi.bcm2835.pio.Pwm
 
-class PiPwm {
+class Bcm2835Pwm : Pwm {
 
-
-    val bcm2835 = Bcm2835.INSTANCE
-
-    var clockFrequency: Double = 0.0
+    private var clockFrequency: Float = 0f
+    private var range: Float = 0f
 
     var channel: UByte = 0.toUByte()
     var markspace: UByte = 1.toUByte()
-
-    var frequency: UInt = 50.toUInt()
-
-    private var range: Double = 0.0;
 
     init {
         bcm2835_gpio_fsel(RPI_BPLUS_GPIO_J8_12.toUByte(), BCM2835_GPIO_FSEL_ALT5.toUByte())
@@ -31,29 +25,32 @@ class PiPwm {
     }
 
     fun setDivisor(divisor: Int) {
-        this.clockFrequency = 19200000.0 / divisor
+        this.clockFrequency = 19200000f / divisor
         bcm2835_pwm_set_clock(divisor.toUInt())
     }
 
-    fun setEnabled(enable: Boolean) {
+    override fun setEnabled(enable: Boolean) {
         bcm2835_pwm_set_mode(this.channel, this.markspace, if (enable) 1.toUByte() else 0.toUByte())
     }
 
-    fun setPwmFrequencyHz(Freq: Double) {
-        this.range = clockFrequency / Freq
+    override fun setPwmFrequencyHz(freq: Float) {
+        println("$clockFrequency")
+        this.range = clockFrequency / freq
+        println("$range")
         bcm2835_pwm_set_range(channel, this.range.toUInt())
     }
 
-    fun setPwmDutyCycle(dc: Double) {
-        var data: UInt = dc.let {
+    override fun setPwmDutyCycle(dc: Float) {
+
+        var dutyCycle: Float = dc.let {
             when {
-                it < 0 -> 0.toUInt()
-                it > range -> frequency.toUInt()
-                else -> ((0 + range) / 2).toUInt()
+                it < 0 -> 0f
+                it > 100 -> 100f
+                else -> dc
             }
         }
-        bcm2835_pwm_set_data(channel, data)
+        val data = this.range / 100 * dutyCycle
+        bcm2835_pwm_set_data(channel, data.toUInt())
     }
-
 
 }

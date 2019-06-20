@@ -7,7 +7,7 @@ enum class Bcm2835 {
     INSTANCE;
 
     init {
-        if (bcm2835_init() != 0)
+        if (bcm2835_init() == 0)
             throw IOException("初始化bcm2835失败")
         println("打开bcm2835")
     }
