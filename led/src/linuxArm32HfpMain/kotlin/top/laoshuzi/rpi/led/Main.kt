@@ -6,6 +6,7 @@ import top.laoshuzi.rpi.bcm2835.Bcm2835
  * Created by mouse on 2019/6/13.
  */
 fun main(args: Array<String>) {
+
     val count = args[0].toInt()
 
     println("led blink")

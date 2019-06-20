@@ -10,6 +10,7 @@ version = "1.0-SNAPSHOT"
 repositories {
     jcenter()
     mavenCentral()
+    maven("https://kotlin.bintray.com/kotlinx")
 }
 
 kotlin {
@@ -35,8 +36,6 @@ kotlin {
             defaultSourceSet {
                 dependencies {
                     implementation(Deps.kotlin.stdlib.it)
-                    implementation(Deps.kotlinx.coroutines.it)
-                    implementation(Deps.kotlinx.serialization_runtime.it)
 //                    implementation(Deps.kotlinx.coroutines.native)
 //                    implementation(Deps.kotlinx.serialization_runtime.native)
                 }
