@@ -1,4 +1,4 @@
-package top.laoshuzi.rpi.bcm2835.exception
+package top.laoshuzi.rpi.bcm2835.common.exception
 
 open class IOException : Exception {
     constructor() : super()

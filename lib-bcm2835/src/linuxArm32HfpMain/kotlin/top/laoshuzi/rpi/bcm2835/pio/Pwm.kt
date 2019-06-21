@@ -1,6 +1,6 @@
 package top.laoshuzi.rpi.bcm2835.pio
 
-import top.laoshuzi.rpi.bcm2835.exception.IOException
+import top.laoshuzi.rpi.bcm2835.common.exception.IOException
 
 
 /**

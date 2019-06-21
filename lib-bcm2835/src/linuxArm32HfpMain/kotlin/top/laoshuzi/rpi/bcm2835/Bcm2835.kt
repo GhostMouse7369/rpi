@@ -1,7 +1,7 @@
 package top.laoshuzi.rpi.bcm2835
 
 import lib.bcm2835.*
-import top.laoshuzi.rpi.bcm2835.exception.IOException
+import top.laoshuzi.rpi.bcm2835.common.exception.IOException
 
 enum class Bcm2835 {
     INSTANCE;

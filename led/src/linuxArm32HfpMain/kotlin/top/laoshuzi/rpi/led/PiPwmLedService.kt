@@ -1,17 +1,17 @@
 package top.laoshuzi.rpi.led
 
-import top.laoshuzi.rpi.bcm2835.pio.PiPwm
 import top.laoshuzi.rpi.bcm2835.pio.Pwm
+import top.laoshuzi.rpi.bcm2835.pio.impl.Bcm2835Pwm
 
 /**
  * Created by mouse on 2019/6/13.
  */
 class PiPwmLedService : PiLedService(), PwmLedService {
 
-    private var pwm: Pwm = PiPwm.PWM0.pwm
+    private var pwm: Pwm = Bcm2835Pwm()
 
     init {
-        pwm.setPwmFrequencyHz(50f)
+        pwm.setPwmFrequencyHz(100f)
     }
 
     override fun openLed() {
@@ -21,7 +21,7 @@ class PiPwmLedService : PiLedService(), PwmLedService {
 
     override fun closeLed() {
         super.closeLed()
-        pwm.setEnabled(false)
+//        pwm.setEnabled(false)
     }
 
     override fun setLedLight(light: Float) {

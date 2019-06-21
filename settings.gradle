@@ -1,0 +1,6 @@
+rootProject.name = 'rpi'
+include 'lib-wiring'
+include 'lib-bcm2835'
+include 'hello'
+include 'led'
+
