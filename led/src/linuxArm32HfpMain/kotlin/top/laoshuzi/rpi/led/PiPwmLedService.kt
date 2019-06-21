@@ -21,7 +21,7 @@ class PiPwmLedService : PiLedService(), PwmLedService {
 
     override fun closeLed() {
         super.closeLed()
-//        pwm.setEnabled(false)
+        pwm.setEnabled(false)
     }
 
     override fun setLedLight(light: Float) {

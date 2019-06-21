@@ -25,7 +25,7 @@ kotlin {
         binaries.executable {
             baseName = "led"
             entryPoint("top.laoshuzi.rpi.led.main")
-            linkerOpts = mutableListOf("-Llibs/linux_arm32", "-lbcm2835")
+            linkerOpts = mutableListOf("-L/usr/local/lib", "-Llibs/linux_arm32", "-lbcm2835", "-lwiringPi")
         }
         compilations["main"].apply {
             defaultSourceSet {
@@ -33,6 +33,7 @@ kotlin {
                     implementation(Deps.kotlin.stdlib.it)
 
                     implementation(project(":lib-bcm2835"))
+                    implementation(project(":lib-wiring"))
                 }
             }
         }

@@ -1,0 +1,4 @@
+headers = wiringPi.h wiringPiI2C.h wiringSerial.h wiringPiSPI.h softPwm.h softServo.h softTone.h
+#headerFilter = *
+package = lib.wiring
+compilerOpts = -Isrc/nativeInterop/c/include

@@ -7,12 +7,20 @@ import top.laoshuzi.rpi.bcm2835.Bcm2835
  */
 fun main(args: Array<String>) {
 
-    val bcm2835 = Bcm2835.INSTANCE
-    val ledService: PwmLedService = PiPwmLedService()
+    println("input[w|b]:")
+    when (readLine()!!) {
+        "w" -> wiringPiLed()
+        "b" -> bcm2835Led()
+        else -> throw Exception("input[w|b]")
+    }
 
+}
 
+// S:P1-11 V:5v G:Gnd
+fun wiringPiLed() {
+    val ledService = WiringPiPwmLedService()
     while (true) {
-        println("---->:")
+        println("input[0-100]:")
         val light = readLine()?.toInt()!!
         when {
             light <= 0 -> ledService.closeLed()
@@ -20,8 +28,19 @@ fun main(args: Array<String>) {
             else -> ledService.setLedLight(light.toFloat() % 100)
         }
     }
-
-//    bcm2835.close()
-
 }
 
+// S:P1-12 V:5v G:Gnd
+fun bcm2835Led() {
+    Bcm2835.init()
+    val ledService = PiPwmLedService()
+    while (true) {
+        println("input[0-100]:")
+        val light = readLine()?.toInt()!!
+        when {
+            light <= 0 -> ledService.closeLed()
+            light >= 100 -> ledService.openLed()
+            else -> ledService.setLedLight(light.toFloat() % 100)
+        }
+    }
+}
